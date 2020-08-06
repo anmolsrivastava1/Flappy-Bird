@@ -32,16 +32,33 @@ block = [
  
 ]
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+ document.addEventListener("keydown",(ev)=>{
+    
+     if(ev.keyCode==32 && start){
+        console.log('space');
+        //let i=0;  
+        //while(i<=60){  
+        //    i+=1;
+        //    birdCoor.y-=1;
+//
+        //}
+        async function jump(){
+            let i=0;  
+            while(i<=60){  
+                if(i%6==0)
+                await sleep(5);
+                i+=1;
+                birdCoor.y-=1;
 
-document.addEventListener("keydown",(ev)=>{
-    console.log(birdCoor.y);
-
-    if(ev.keyCode==32 && start){
-        let i=0;    
-        while(i<=60){
-            i+=1;
-            birdCoor.y-=1;
-        }
+            }
+        } 
+        jump();
+        
+        
     }
     else if(ev.keyCode==13){
         start=true;
@@ -65,7 +82,7 @@ function base(){
     ctx.fillStyle = "rgb(92, 179, 255)";
     ctx.fill();
     
-    if(x==450){
+    if(x>=450){
         x=0;
     }
     
